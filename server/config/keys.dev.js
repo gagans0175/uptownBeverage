@@ -3,13 +3,15 @@ const chalk = require('chalk');
 const connected = chalk.bold.cyan;
 const error = chalk.bold.yellow;
 
-// mongodb+srv://uptownBeverageNY:<password>@uptownbeverageny-2xbrd.mongodb.net/<dbname>?retryWrites=true&w=majority
-//prod:  mongodb+srv://uptownBeverageNY:4bfq4wOX7NgZzLoF@uptownbeverageny-2xbrd.mongodb.net/UptownBeverageNY?retryWrites=true&w=majority
-const MONGOURI = "mongodb+srv://nodeauthdbuser:vaDZA2HcNAr1fy2B@nodeauthcluster-4hm3y.mongodb.net/node-auth?retryWrites=true&w=majority";
+const MONGOURI = "mongodb+srv://uptownbeveragedev:1S0ePgJbjXBhiIzF@uptownbeveragedev-ribvc.mongodb.net/uptownbeverage?retryWrites=true&w=majority"
+//from my account const MONGOURI = 'mongodb+srv://uptownbeverageny:rQGMltjMhgieH0nl@uptownbeverage.yxb2x.mongodb.net/uptownbeverage?retryWrites=true&w=majority';
+// from my account: const MONGOURI = 'mongodb+srv://mystoreuser:mystorepassword@mystorecluster.4ligo.mongodb.net/mystore?retryWrites=true&w=majority'
+//from my account: const MONGOURI = "mongodb+srv://nodeauthdbuser:vaDZA2HcNAr1fy2B@nodeauthcluster-4hm3y.mongodb.net/node-auth?retryWrites=true&w=majority";
 
-const InitiateMongoServer = async () => {
+
+const InitiateMongoServer = () => {
   try {
-    await mongoose.connect(MONGOURI, {
+     mongoose.connect(MONGOURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     });

@@ -1,3 +1,4 @@
 node_modules
 client/node_modules
+keys.dev.js
 server/config/keys.dev.js
