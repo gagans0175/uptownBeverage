@@ -134,12 +134,14 @@ router.post(
 
       if (!user)
         return res.status(200).json({
+          errors: true,
           message: "User does not exist."
         });
 
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch)
-        return res.status(400).json({
+        return res.status(200).json({
+          errors: true,
           message: "Incorrect Password! Please try again."
         });
 
@@ -162,6 +164,7 @@ router.post(
         (err, token) => {
           if (err) throw err;
           res.status(200).json({
+            errors: false,
             success: true,
             token
           });
@@ -170,6 +173,7 @@ router.post(
     } catch (e) {
       console.error(e);
       res.status(500).json({
+        errors: true,
         message: "Server Error"
       });
     }

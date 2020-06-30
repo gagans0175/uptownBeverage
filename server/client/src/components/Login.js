@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 import styled from 'styled-components';
-import { deviceType, setPageTitle } from '../utils';
+import { deviceType } from '../utils';
 
 
 const MainContainer = styled.div`
@@ -26,17 +26,18 @@ margin: 8vh auto 0 auto;
 
 export default function MyForm(props) {
   
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const [emailActive, setEmailStatus] = useState(false);
   const [device, setDevice] = useState(deviceType);
   
-  const onSubmitForm = (formData) => {
+  const onSubmitForm = (formData, e) => {
     props.actions.signInUser(formData, (response) => {
-      console.log('response', response);
+      console.log('response signin', response);
       if(response && (response.token && response.token !== '')){
         props.history.push('/dashboard')
       }
     });
+    e.target.reset(); // reset after form submit
     
   }
   const handleLoginOption = () => {
@@ -55,7 +56,7 @@ export default function MyForm(props) {
 
       window.addEventListener("resize", updateDimensions);
       return () => window.removeEventListener("resize", updateDimensions);
-  },[]); 
+  },[props]); 
 
   const columnSize = device === 'desktop' ? 12 : 12;
   const defaultUserName = props.auth && props.auth.user_name ? props.auth.user_name : '';

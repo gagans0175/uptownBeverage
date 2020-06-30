@@ -1,6 +1,7 @@
 import axios from 'axios';
 import setAuthToken from './setAuthToken';
 import jwt_decode from "jwt-decode";
+import { showErrorNotification, hideNotification } from './components/common/NotificationBar/actions';
 
 export const fetchUser = (token) => async dispatch => {
   const response = await axios.get('/user/me', token);
@@ -35,31 +36,39 @@ export const signInUser = (userData, callback) => dispatch => {
   axios
     .post("/user/login", userData)
     .then(res => {
+      
+      if (res.data.errors) {
+        dispatch(showErrorNotification(res.data.message));
+        setTimeout(() => {
+          dispatch(hideNotification())
+        }, 3000);
+      } else {
+        const { token } = res.data;
+        sessionStorage.setItem("jwtToken", token);
+        setAuthToken(token);
+        const decoded = jwt_decode(token);
+        dispatch(setCurrentUser(decoded, res.data));
+        callback && callback(res.data);
+      }
 
-      // Set token to sessionStorage
-      const { token } = res.data;
-      sessionStorage.setItem("jwtToken", token);
-      // Set token to Auth header
-      setAuthToken(token);
-      // Decode token to get user data
-      const decoded = jwt_decode(token);
-      // Set current user
-      dispatch(setCurrentUser(decoded));
-      callback && callback(res.data);
     })
-    .catch(err =>
+    .catch(err => {
+      console.log('err', err);
       dispatch({
         type: 'GET_ERRORS',
-        payload: err.response.data
-      })
+        payload: err.message
+      })}
     );
 };
 
 // Set logged in user
-export const setCurrentUser = decoded => {
+export const setCurrentUser = (decoded, data) => {
   return {
     type: 'SET_CURRENT_USER',
-    payload: decoded
+    payload: {
+      decoded,
+      data
+    }
   };
 };
 

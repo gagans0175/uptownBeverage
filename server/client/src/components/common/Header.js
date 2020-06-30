@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from "react-router-dom";
 import BackButton from './BackButton';
 const Header = styled.div`
 background: #252525;

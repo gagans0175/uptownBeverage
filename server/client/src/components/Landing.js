@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'react-flexbox-grid';
 import styled, {keyframes} from 'styled-components';
 import logo from '../assets/images/logo4.png';
 import { deviceType } from '../utils';
@@ -27,16 +26,6 @@ const AnimationContent = styled.div`
   animation-duration: 4s;
   animation-fill-mode: forwards;
   height: 95vh;
-`;
-
-const CustomRow = styled(Row)`
-height: 100vh;
-display:flex;
-align-items:center;
-text-align:center;
-padding: 0;
-margin: 0 !important;
-width: 100%;
 `;
 
 
@@ -83,22 +72,21 @@ class LoginPage extends Component {
     window.removeEventListener("resize", this.updateDimensions);
   }
   render() {
-    console.log('LANDING PROPS', this.props);
     return (
-      <CustomRow>
-          <AnimationContainer>
-            <AnimationContent>
-              <ImgContainer>
-                <MobileImage src={logo} />
-                <TextContainer>
-                  <Link to="/login" style={{ letterSpacing: '1.5px',color: '#FFF' }}>
-                    Log In
-                  </Link>
-                </TextContainer>
-              </ImgContainer>
-            </AnimationContent>
-        </AnimationContainer>
-      </CustomRow>
+      
+        <AnimationContainer>
+          <AnimationContent>
+            <ImgContainer>
+              <MobileImage src={logo} />
+              <TextContainer>
+                <Link to="/login" style={{ letterSpacing: '1.5px',color: '#FFF' }}>
+                  Log In
+                </Link>
+              </TextContainer>
+            </ImgContainer>
+          </AnimationContent>
+      </AnimationContainer>
+      
     );
   }
 }

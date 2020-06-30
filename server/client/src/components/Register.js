@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Field, reduxForm } from 'redux-form'
 import styled from 'styled-components';
@@ -110,7 +110,6 @@ const renderDropdown = ({ input, label, meta: { touched, error } }) => (
   <div>
     <label htmlFor={input.name} style={{ fontSize: '10px', lineHeight:'12px'}}>{label}</label>
     <select 
-    className="custom-select"
     className={`${touched && error ? 'custom-select error' : 'custom-select'}`}
     {...input} >
     {colors.map(val => (

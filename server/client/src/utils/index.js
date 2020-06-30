@@ -1,6 +1,6 @@
 export const setPageTitle = (title='')=>{
   if (title && title !== '') {
-    title = title.replace("MVA BYOD", "");
+    title = title.replace("Uptown Beverage", "");
   }
   // Set Web Title
   document.title = title;

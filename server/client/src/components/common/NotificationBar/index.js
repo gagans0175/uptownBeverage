@@ -2,11 +2,11 @@ import React from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import * as actions from './actions';
-import { Row, Col } from 'react-flexbox-grid';
 import styled from 'styled-components';
 import '../../../assets/css/notification.css';
 
 const ParentContainer = styled.div`
+margin-top:8vh;
 display: flex;
 flex-direction: row;
 flex-wrap: nowrap;
@@ -30,10 +30,7 @@ const MSG = styled.h5`
 
 `;
 class NotificationBar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
+  
   componentDidMount() {
     // this.props.checkNotification(this.props.page);
   }
@@ -45,14 +42,14 @@ class NotificationBar extends React.Component {
   //   }
   // }
   render(){
-    const { isNotificationVisible, type, message} = this.props;
+    const { isNotificationVisible, message} = this.props;
 
     return(
       <React.Fragment>
       {isNotificationVisible && 
         <ParentContainer>    
           <ChildContainer1>
-            LOGO
+            
           </ChildContainer1>
           <ChildContainer2>
             <MSG dangerouslySetInnerHTML={{ __html: message }} />
