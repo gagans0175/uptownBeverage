@@ -28,19 +28,21 @@ export default class HeaderComponent extends React.Component {
     this.props.actions.logoutUser(this.props.history);
   };
   render(){
-    console.log('HEADER PROPS', this.props);
     const { user = {} } = this.props.authReducer;
     const { loggedInuser } = user;
     return(
       <Header>
         <div className="row">
-          <div className="col">
+          {<div className="col">
            {this.props.authReducer && this.props.authReducer.isAuthenticated && <BackButton />}
+          </div>}
+          <div className="col">
+              Welcome <span>{loggedInuser && loggedInuser.name && loggedInuser.name.split(" ")[0]}</span>!
           </div>
           
           <div className="col">
             {this.props.authReducer && this.props.authReducer.isAuthenticated && <SignOut onClick={this.onLogoutClick} className="btn btn-link" >
-              <span aria-hidden="true">Logout <span>{loggedInuser && loggedInuser.name && loggedInuser.name.split(" ")[0]}</span></span>
+              <span aria-hidden="true">Log me out</span>
             </SignOut>}
           </div>
         </div>  
