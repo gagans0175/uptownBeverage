@@ -58,7 +58,7 @@ export default class DashboardComponent extends React.PureComponent {
           <div className="card text-center">
             <div className="card-header">
               {item.itemHeading}
-            </div>
+              </div>
           
             <div className="card-body">
               <p className="card-text">{item.itemBody}</p>

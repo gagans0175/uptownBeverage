@@ -1,3 +1,7 @@
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+// PORT
+const PORT = process.env.PORT || 4000;
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const cookieSession = require('cookie-session');
@@ -15,6 +19,8 @@ const app = express();
 
 // Middleware
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -30,8 +36,7 @@ if (process.env.NODE_EN === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
-// PORT
-const PORT = process.env.PORT || 4000;
+
 
 app.get("/", (req, res) => {
   res.json({ message: "API Working now" });
