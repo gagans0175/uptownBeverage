@@ -16,7 +16,7 @@ export const getCurrentUser = () => async dispatch => {
 // Register User
 export const registerUser = (userData, callback) => dispatch => {
   axios
-    .post("/user/register", userData)
+    .post("/user/signup", userData)
     .then((response) => {
       dispatch({ type: 'USER_INFO', payload: response.data });
       callback && callback(response.data);

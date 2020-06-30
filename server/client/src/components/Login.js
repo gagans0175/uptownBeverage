@@ -58,7 +58,7 @@ export default function MyForm(props) {
   },[]); 
 
   const columnSize = device === 'desktop' ? 12 : 12;
- 
+  const defaultUserName = props.auth && props.auth.user_name ? props.auth.user_name : '';
   return (
     <MainContainer>
       <FluidRow>
@@ -76,6 +76,7 @@ export default function MyForm(props) {
               <label htmlFor="user_name" className="sr-only">Username</label>
               <div className="input-group m-0">
                 <input
+                  defaultValue={defaultUserName}
                   style={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0}}
                   className="form-control"
                   id="user_name"

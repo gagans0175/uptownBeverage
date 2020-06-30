@@ -52,9 +52,9 @@ const itemsList = [
 ];
 export default class DashboardComponent extends React.PureComponent {
   renderItemsList = () => {
-    const html = itemsList.map(item =>{
+    const html = itemsList.map((item, i) =>{
       return (
-        <div className="col-sm-12 col-md-6 py-3">
+        <div className="col-sm-12 col-md-6 py-3" key={i}>
           <div className="card text-center">
             <div className="card-header">
               {item.itemHeading}

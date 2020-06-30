@@ -35,7 +35,7 @@ export default class HeaderComponent extends React.Component {
       <Header>
         <div className="row">
           <div className="col">
-            <BackButton />
+           {this.props.authReducer && this.props.authReducer.isAuthenticated && <BackButton />}
           </div>
           <div className="col">
             {this.props.authReducer && this.props.authReducer.isAuthenticated && <Link className="navlinks" to="/register">Register</Link>}
