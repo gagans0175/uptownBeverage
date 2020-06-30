@@ -37,9 +37,7 @@ export default class HeaderComponent extends React.Component {
           <div className="col">
            {this.props.authReducer && this.props.authReducer.isAuthenticated && <BackButton />}
           </div>
-          <div className="col">
-            {this.props.authReducer && this.props.authReducer.isAuthenticated && <Link className="navlinks" to="/register">Register</Link>}
-          </div>
+          
           <div className="col">
             {this.props.authReducer && this.props.authReducer.isAuthenticated && <SignOut onClick={this.onLogoutClick} className="btn btn-link" >
               <span aria-hidden="true">Logout <span>{loggedInuser && loggedInuser.name && loggedInuser.name.split(" ")[0]}</span></span>

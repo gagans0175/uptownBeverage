@@ -26,6 +26,12 @@ margin: 8vh auto 0 auto;
 
 const itemsList = [
   {
+    itemHeading: 'Register an employee',
+    itemBody: 'Sign up an employee and assign role.',
+    buttontext: 'Sign up',
+    redirectURL: '/register'
+  },
+  {
     itemHeading: 'Submit a Timesheet',
     itemBody: 'Enter timesheet for an employee.',
     buttontext: 'Continue',
@@ -42,12 +48,6 @@ const itemsList = [
     itemBody: 'Lets check the inventory.',
     buttontext: 'Continue',
     redirectURL: '/checkInventory'
-  },
-  {
-    itemHeading: 'Time waste',
-    itemBody: 'This is my favorite activity.',
-    buttontext: 'Continue',
-    redirectURL: '/others'
   }
 ];
 export default class DashboardComponent extends React.PureComponent {
@@ -76,8 +76,7 @@ export default class DashboardComponent extends React.PureComponent {
     return(
       <MainContainer>
         <FluidRow className="">
-          {this.renderItemsList()}
-          
+          {this.props.authReducer && this.props.authReducer.isAuthenticated ? this.renderItemsList() : 'You are not authorized'}
         </FluidRow>
       </MainContainer>
     )

@@ -14,7 +14,7 @@ export const getCurrentUser = () => async dispatch => {
 
 
 // Register User
-export const registerUser = (userData, callback) => dispatch => {
+export const signUpUser = (userData, callback) => dispatch => {
   axios
     .post("/user/signup", userData)
     .then((response) => {
@@ -75,7 +75,7 @@ export const logoutUser = (history) => dispatch => {
         setAuthToken(false);
         // Set current user to empty object {} which will set isAuthenticated to false
         dispatch(setCurrentUser({}));
-        history.push('./login')
+        history.push('/login')
       }
     })
     .catch(err =>

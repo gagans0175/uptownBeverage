@@ -1,7 +1,7 @@
 import React from 'react';
 import jwt_decode from "jwt-decode";
 import { Provider } from 'react-redux';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import setAuthToken from './setAuthToken';
 import ParentLandingComponent from './components';
@@ -49,7 +49,7 @@ export default function provider(store, routeConfig) {
       store.dispatch(logoutUser());
   
       // Redirect to login
-      window.location.href = "./login";
+      window.location.href = "/login";
     }
   }
   return (
@@ -57,9 +57,9 @@ export default function provider(store, routeConfig) {
       <CustomRow className="routeProvider">
         <CustomCol xs={12}>
           <NotificationBar />
-          <HashRouter>
+          <BrowserRouter>
             <ParentLandingComponent routesMap={routeConfig} />
-          </HashRouter>
+          </BrowserRouter>
         </CustomCol>  
       </CustomRow> 
     </Provider>

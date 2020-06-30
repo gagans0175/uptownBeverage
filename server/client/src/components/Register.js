@@ -148,7 +148,7 @@ class RegisterUser extends React.Component {
   const columnSize = deviceType() === 'desktop' ? 12 : 12;
   const device = deviceType();
   const handleFormSubmit = (values) =>{
-    this.props.actions.registerUser(values, (response) => {
+    this.props.actions.signUpUser(values, (response) => {
       if(response && !response.errors && (response.existingUser || response.newUser)){
         this.props.history.push('/login')
       }
