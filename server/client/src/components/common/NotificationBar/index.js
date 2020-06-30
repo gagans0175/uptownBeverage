@@ -52,14 +52,17 @@ class NotificationBar extends React.Component {
   render(){
     const { isNotificationVisible, message, type} = this.props;
     const isAuthenticated = (this.props.auth && this.props.auth.isAuthenticated) || false;
-    return(
-        <NotificationWrap role="alertdialog">
-        {isNotificationVisible && (
+    if (!isNotificationVisible) {
+      return null;
+    }
+    return (
+      <>
+        {isNotificationVisible && (<NotificationWrap role="alertdialog">
           <NotificationContianer notificationType={type} isAuthenticated={isAuthenticated}>
             <MSG>{message}</MSG>
           </NotificationContianer>
-          )}
-      </NotificationWrap>
+          </NotificationWrap>)}
+        </>
     );
   }
 }

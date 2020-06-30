@@ -130,7 +130,7 @@ class RegisterUser extends React.Component {
 
   updateDimensions = () => {
     this.setState({
-      deviceType: deviceType()
+      deviceType: this.state.deviceType
     })
   }
   componentDidMount() {
@@ -153,7 +153,15 @@ class RegisterUser extends React.Component {
       }
     });
   }
-  
+  //console.log('REGISTER', this.props);
+    if (!sessionStorage.jwtToken) {
+      this.props.actions.showWarningNotification('Your are not authorized.')
+      setTimeout(() => {
+        this.props.actions.hideNotification()
+        this.props.history.push('/login')    
+      }, 2000);
+    
+  }
   return (
     <MainContainer>
       <FluidRow className="no-gutters">
