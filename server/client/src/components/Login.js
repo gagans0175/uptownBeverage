@@ -49,14 +49,24 @@ export default function MyForm(props) {
   }
   useEffect(() => {
     console.log('LOGIN PROPS', props);
+    if (props.auth.message) {
+      props.actions.showInfoNotification(props.auth.message);
+      setTimeout(() => {
+        props.actions.hideNotification()
+      }, 8000);
+    }
     // If logged in and user navigates to Login page, should redirect them to dashboard
     if (props.auth && props.auth.isAuthenticated) {
+      props.actions.showSuccessNotification('Successfully logged in.');
+      setTimeout(() => {
+        props.actions.hideNotification()
+      }, 3000);
       props.history.push("/dashboard");
     }
 
       window.addEventListener("resize", updateDimensions);
       return () => window.removeEventListener("resize", updateDimensions);
-  },[props]); 
+  },[]); 
 
   const columnSize = device === 'desktop' ? 12 : 12;
   const defaultUserName = props.auth && props.auth.user_name ? props.auth.user_name : '';

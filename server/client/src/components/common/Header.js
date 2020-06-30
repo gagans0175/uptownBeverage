@@ -29,20 +29,24 @@ export default class HeaderComponent extends React.Component {
   render(){
     const { user = {} } = this.props.authReducer;
     const { loggedInuser } = user;
+    //console.log('HEADER', this.props.authReducer);
+    if (this.props.authReducer && !this.props.authReducer.isAuthenticated) {
+      return <></>
+    }
     return(
-      <Header>
+      <Header className="header">
         <div className="row">
           {<div className="col">
-           {this.props.authReducer && this.props.authReducer.isAuthenticated && <BackButton />}
+          <BackButton />
           </div>}
           <div className="col">
-              Welcome <span>{loggedInuser && loggedInuser.name && loggedInuser.name.split(" ")[0]}</span>!
+              <span>Welcome {loggedInuser && loggedInuser.name && loggedInuser.name.split(" ")[0]} !</span>
           </div>
           
           <div className="col">
-            {this.props.authReducer && this.props.authReducer.isAuthenticated && <SignOut onClick={this.onLogoutClick} className="btn btn-link" >
+            <SignOut onClick={this.onLogoutClick} className="btn btn-link" >
               <span aria-hidden="true">Log me out</span>
-            </SignOut>}
+            </SignOut>
           </div>
         </div>  
       </Header>

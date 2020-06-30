@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import * as landingActions from '../actions';
+import * as NotificationActions from '../components/common/NotificationBar/actions';
 import LoginComponent from'../components/Login';
 
 const mapStateToProps = state => {
@@ -12,7 +13,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({ ...landingActions }, dispatch)
+  actions: bindActionCreators({ ...landingActions, ...NotificationActions }, dispatch)
 });
 
 const connectStateAndProps = connect(mapStateToProps, mapDispatchToProps);

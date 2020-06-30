@@ -17,7 +17,10 @@ text-align:center;
 `;
 
 export default class FooterComponent extends React.Component {
-  render(){
+  render() {
+    if (this.props.authReducer && !this.props.authReducer.isAuthenticated) {
+      return <></>
+    }
     return(
       <Footer>Footer</Footer>
     );
