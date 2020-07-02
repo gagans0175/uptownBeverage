@@ -18,15 +18,18 @@ justify-content: center!important;
 box-sizing: border-box;
 flex: 0 1 auto;
 width: 100%;
-max-width: 325px;
+max-width: 375px;
 padding: 15px;
 margin: 8vh auto 0 auto;
 `;
-
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 export default function MyForm(props) {
   
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm({
+    mode: 'onChange',
+  });
+
   const [emailActive, setEmailStatus] = useState(false);
   const [device, setDevice] = useState(deviceType);
   
@@ -70,6 +73,9 @@ export default function MyForm(props) {
 
   const columnSize = device === 'desktop' ? 12 : 12;
   const defaultUserName = props.auth && props.auth.user_name ? props.auth.user_name : '';
+
+  console.log('ERRORS', errors);
+  var strongRegexPassword = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
   return (
     <MainContainer>
       <FluidRow>
@@ -83,6 +89,8 @@ export default function MyForm(props) {
         <div className={`col-${columnSize}`}>
           <div style={{height: '4px', backgroundColor: '#000', marginBottom: '15px', marginTop: '8px', width: '100%'}}></div>
           <form noValidate onSubmit={handleSubmit(onSubmitForm)}>
+         
+
             {!emailActive && <div>
               <label htmlFor="user_name" className="sr-only">Username</label>
               <div className="input-group m-0">
@@ -100,10 +108,14 @@ export default function MyForm(props) {
                       value: true,
                       message: "User name is required",
                     },
-                    minLength: {
-                      value: 2,
-                      message: "User name should be minimum length of 5",
+                    pattern: {
+                      value: /^[a-zA-Z0-9]+([_]?[a-zA-Z0-9])*$/,
+                      message: 'No special Characters the beginning or end.'
                     },
+                    minLength: {
+                      value: 8,
+                      message: "Minimum 8 characters required.",
+                    }
                   })}
                 />
               
@@ -123,10 +135,10 @@ export default function MyForm(props) {
                 type="email"
                 placeholder="Email"
                 ref={register({
-                  required: 'Email is required',
+                  required: 'You must specify a user name',
                   pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                    message: 'invalid email address'
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{3,4}$/i,
+                    message: 'Invalid email address'
                   }
                 })}
               />
@@ -145,15 +157,11 @@ export default function MyForm(props) {
                 type="password"
                 placeholder="Password"
                 ref={register({
-                  validate: value => value !== 'test123' || 'Too common password, you can do better!',
-                  required: {
-                    value: true,
-                    message: "Password is required",
+                  validate: value => {
+                   return (value !== 'test123' && value !== 'abcd1234')|| 'Too common password, you can do better!'
                   },
-                  minLength: {
-                    value: 5,
-                    message: "user name should be minimum length of 5",
-                  },
+                  
+                  
                 })}
               />  
               

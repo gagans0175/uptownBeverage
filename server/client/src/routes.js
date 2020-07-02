@@ -6,6 +6,7 @@ import LandingContainer from './containers/LandingContainer';
 import RegisterContainer from './containers/RegisterContainer';
 import LoginContainer from './containers/LoginContainer';
 import DashboardContainer from './containers/DashboardContainer';
+import CheckIn from './components/CheckinCheckout';
 
 
 export default function createRoute() {
@@ -34,6 +35,12 @@ export default function createRoute() {
       exact: true,
       component: () => <DashboardContainer />,
       pageName: 'dashboard'
+    },
+    {
+      path: '/checkin',
+      exact: true,
+      component: () => <CheckIn />,
+      pageName: 'checkin'
     },
     // {
     //   path: '/dashboard',

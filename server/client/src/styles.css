@@ -2,12 +2,8 @@
 @import-normalize; 
 
 
-
 /* rest of app styles */
 html {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   height:100%;
 }
 *, *::before, *::after {
@@ -22,13 +18,13 @@ body {
   color: rgba(0, 0, 0, 0.87);
   margin: 0;
   font-size: 0.875rem;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   line-height: 1.43;
   letter-spacing: 0.01071em;
   -ms-flex-align: center;
   background-color: #fff !important;
-  height: 100%;
+  height: 100vh;
 }
 @media print {
   body {
@@ -163,3 +159,57 @@ input[type=tel].success,input[type=text].success {
   border: 1px solid #00af3f;
   border-bottom-width: 4px
 }
+
+.fa-phone-volume:before {
+  content: "\f2a0"
+}
+
+.fa-map-marker-alt:before {
+  content: "\f3c5"
+}
+
+.fa-phone:before {
+  content: "\f095"
+}
+
+.fa-phone-slash:before {
+  content: "\f3dd"
+}
+
+.fa-phone-square:before {
+  content: "\f098"
+}
+
+
+.fa-php:before {
+  content: "\f457"
+}
+
+.fa-pied-piper:before {
+  content: "\f2ae"
+}
+
+.fa-pied-piper-alt:before {
+  content: "\f1a8"
+}
+
+.fa-map-marker:before {
+  content: "\f041"
+}
+
+
+
+.fa-map-pin:before {
+  content: "\f276"
+}
+
+.fa-map-signs:before {
+  content: "\f277"
+}
+
+.fa-markdown:before {
+  content: "\f60f"
+}
+/* .navigation-wrapper{
+  box-sizing: unset !important;
+} */
